@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+import PokemonListItemWrapper from "./PokemonListItem/PokemonListItemWrapper";
 
 const POKEMON_LIST_ROUTE =
   "https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0";
@@ -18,11 +18,7 @@ const PokemonList = () => {
     <>
       {!isLoading &&
         data.results.map((e: any) => {
-          return (
-            <div key={e.name}>
-              <Link to={`details/${e.name}`}>{e.name}</Link>
-            </div>
-          );
+          return <PokemonListItemWrapper name={e.name} {...e} />;
         })}
     </>
   );
