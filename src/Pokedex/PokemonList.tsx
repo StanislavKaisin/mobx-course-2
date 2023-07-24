@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import PokemonListItemWrapper from "./PokemonListItem/PokemonListItemWrapper";
+import { listFetcher } from "../Api";
 
 const POKEMON_LIST_ROUTE =
   "https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0";
@@ -8,9 +9,7 @@ const POKEMON_LIST_ROUTE =
 const PokemonList = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["pokemon-list"],
-    queryFn: async () => {
-      return fetch(POKEMON_LIST_ROUTE).then((response) => response.json());
-    },
+    queryFn: listFetcher(),
     staleTime: 60 * 1000,
   });
 

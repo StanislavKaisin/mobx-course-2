@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
+import { detailFetcher } from "../Api";
 
 interface PokemonDetailsProps {
   name?: string;
@@ -12,11 +13,7 @@ const PokemonDetails: FC<PokemonDetailsProps> = () => {
   const { name } = useParams<{ name: string }>();
   const { data, isLoading } = useQuery({
     queryKey: ["pokemon-list", name],
-    queryFn: async () => {
-      return fetch(POKEMON_DETAILS_ROUTE + name).then((response) =>
-        response.json()
-      );
-    },
+    queryFn: detailFetcher(name!),
     staleTime: 60 * 1000,
   });
   return <>{!isLoading && JSON.stringify(data)}</>;

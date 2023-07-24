@@ -14,10 +14,15 @@ const PokemonListItem = ({ data }: any) => {
         />
       </div>
       <div className={styles["item-content"]}>
-        #{data.id} <strong>{data.name}</strong>
-      </div>
-      <div>
-        Types: {data.types.map((type: any) => type.type.name).join(", ")}
+        <div className="">
+          #{data.id}{" "}
+          <strong>
+            {data.names.find((o: any) => o.language.name === "en").name}
+          </strong>
+        </div>
+        <div>
+          Types: {data.types.map((type: any) => type.type.name).join(", ")}
+        </div>
       </div>
     </Link>
   );
