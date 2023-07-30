@@ -5,7 +5,7 @@ import { Suspense, lazy } from "react";
 // import { PokemonDetails } from "./Pokedex/PokemonDetails";
 // import { PokemonList } from "./Pokedex/PokemonList";
 
-const PokemonList = lazy(() => import("./Pokedex/PokemonList"));
+const Pokedex = lazy(() => import("./Pokedex"));
 const PokemonDetails = lazy(() => import("./Pokedex/PokemonDetails"));
 
 const queryClient = new QueryClient();
@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PokemonList />,
+    element: <Pokedex />,
   },
   {
     path: "details/:name",

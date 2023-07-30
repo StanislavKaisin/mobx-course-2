@@ -2,11 +2,12 @@ import React from "react";
 import { useQuery } from "react-query";
 import PokemonListItemWrapper from "./PokemonListItem/PokemonListItemWrapper";
 import { listFetcher } from "../Api";
+import { observer } from "mobx-react-lite";
 
 const POKEMON_LIST_ROUTE =
   "https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0";
 
-const PokemonList = () => {
+const PokemonList = ({filter}: any) => {
   const { data, isLoading } = useQuery({
     queryKey: ["pokemon-list"],
     queryFn: listFetcher(),
@@ -16,11 +17,11 @@ const PokemonList = () => {
   return (
     <>
       {!isLoading &&
-        data.results.map((e: any) => {
+        data.results.filter(filter).map((e: any) => {
           return <PokemonListItemWrapper name={e.name} {...e} />;
         })}
     </>
   );
 };
 
-export default PokemonList;
+export default observer(PokemonList);
