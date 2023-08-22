@@ -1,0 +1,9 @@
+.load-more-btn {
+  padding: 1rem 0.5rem;
+  background-color: #48f;
+  margin: 2rem auto;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  display: block;
+}

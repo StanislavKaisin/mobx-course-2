@@ -10,8 +10,13 @@ export const detailFetcher = (name: string) => async () => {
   return { ...details, names: species.names };
 };
 
-export const listFetcher = () => async () => {
-  return await fetch(BASE_URL + "/pokemon?limit=1000&offset=0").then(
-    (response) => response.json()
-  );
-};
+export const listFetcher = async ({ pageParam = 0 })=> {
+    return fetch(
+    BASE_URL + "/pokemon?limit=100&offset=" + pageParam * 100
+  ).then(response =>response.json()).then((response)=>{
+    return {
+      ...response,
+      page: pageParam,
+    };
+  })
+}
